@@ -1,0 +1,511 @@
+openapi: '3.0.2'
+info:
+  title: UpSport
+  description: Projet réalisé dans le cadre du cours de Web Architecture 4eiaw40 à l'ECAM (Buslain Alexandre)
+  version: '1.0'
+servers:
+  - url: http://localhost:3000
+  - url: https://api.server.test/v1
+  
+
+#ACCORD
+paths:
+  /accord:
+    get:
+      tags:
+      - Accord
+      summary: Renvoie tous les accords
+      responses:
+        '200':
+          description: A JSON array of destinations
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/accords'
+
+
+  /accord?id={accord_id}:
+    get:
+      tags:
+      - Accord
+      summary: renvoie un accord identifié par son id
+      parameters:
+        - name: accord_id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of destination
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/accord'
+
+    delete:
+      tags:
+      - Accord
+      summary: Supprime un accord
+      parameters:
+        - name: accord_id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+    put: 
+      tags:
+      - Accord
+      summary: Modifie un accord
+      parameters:
+        - name: accord_id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+                
+
+  /accord/add:
+    post:
+      tags:
+      - Accord
+      summary: Ajoute/Crée un accord
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/accord'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+
+  /accord/search?term={term}:
+    get:
+      tags:
+      - Accord
+      summary: Chercher avec un term et obtenir les accords correspondants
+      parameters:
+        - name: term
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: string
+            minimum: 1
+            example: XXX
+      responses:
+        '200':
+          description: A JSON dict of destination
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/accords'
+
+
+
+# CONTREPARTIE
+  /accord/contrepartie:
+    get:
+      tags:
+      - Contrepartie
+      summary: Renvoie toutes les contreparties
+      responses:
+        '200':
+          description: A JSON array of destinations
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/contreparties'
+
+
+  /accord/contrepartie?id={contrepartie_id}:
+    get:
+      tags:
+      - Contrepartie
+      summary: Renvoie les infos d'une contrepartie identifiée par son id
+      parameters:
+        - name: contrepartie_id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of Agency
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/contrepartie'
+    delete:
+      tags:
+      - Contrepartie  
+      summary: Supprime une contrepartie
+      parameters:
+        - name: contrepartie_id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+          example: 3
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+    post:
+      tags:
+      - Contrepartie
+      summary: Valide une contrepartie
+      parameters:
+        - name: contrepartie_id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+          example: 3
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+
+# ATHLETE
+  /athlete:
+    get:
+      tags:
+       - Athlète
+      summary: Renvoie tous les athlètes
+      responses:
+        '200':
+          description: A JSON array of links
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/athletes'
+  /athlete/add:
+    post:
+      tags:
+       - Athlète
+      summary: Crée un nouvel athlète
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/athlete'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+    
+  /athlete?id={id}:
+    get:
+      tags:
+      - Athlète 
+      summary: Renvoie un athlète identifié par son id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of Link
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/athlete'
+    delete:
+      tags:
+      - Athlète  
+      summary: Supprime un athlète
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+          example: 3
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+# SPONSOR
+  /sponsor:
+    get:
+      tags:
+       - Sponsor
+      summary: Renvoie tous les sponsors
+      responses:
+        '200':
+          description: A JSON array of links
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/sponsors'
+  /sponsor/add:
+    post:
+      tags:
+       - Sponsor
+      summary: Crée un nouveau sponsor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/sponsor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+    
+  /sponsor?id={id}:
+    get:
+      tags:
+      - Sponsor 
+      summary: Renvoie un sponsor identifié par son id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of Link
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/sponsor'
+    delete:
+      tags:
+      - Sponsor  
+      summary: Supprime un sponsor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+          example: 3
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+
+
+
+#COMPONENTS
+components:
+  schemas:
+
+    GoodResponse:
+      description: A good response
+      properties:
+        message: 
+          type: string
+          example: Operation done
+    
+    accord:
+      description: Modèle contenant l'info de l'accord
+      properties:
+
+        accord_id:
+          type: integer
+          example: 22 
+        sponsor:
+          type: string
+          example: Red Bull
+        athlète:
+          type: string
+          example: Tom de Dorlodot
+        date_signature:
+          type: string
+          example: 22/10/1997
+        date_fin:
+          type: string
+          example: 23/10/2025
+        
+    accords:
+      description: Modèle contenant plusieurs accords
+      items:
+        type: object         
+        $ref: '#/components/schemas/accord'
+
+
+
+    contrepartie:
+      description: Modèle contenant l'info d'une contrepartie
+      properties:
+        contrepartie_id: 
+          type: integer
+          example: 9
+        etat_avancement: 
+          type: string
+          example: done
+        statut:
+          type: boolean
+          example: true
+          
+    contreparties:
+      description: Modèle contenant plusieurs contreparties
+      items:
+        type: object         
+        $ref: '#/components/schemas/contrepartie'
+
+
+
+    athlete:
+      description: Modèle contenant l'info d'un athlète
+      properties:
+        id: 
+          type: integer
+          example: 199
+        nom: 
+          type: string
+          example: de Dorlodot
+        prenom:
+          type: string
+          example: Tom
+        discipline:
+          type: string
+          example: parapente
+        adresse:
+          type: string
+          example: rue du vent
+        numéro:
+          type: integer
+          example: 123
+        codepostal:
+          type: integer
+          example: 1150
+        ville:
+          type: string
+          example: Bruxelles
+     
+    athletes:
+      description: Modèle contenant plusieurs athlètes
+      items:
+        type: object         
+        $ref: '#/components/schemas/athlete'
+
+
+    sponsor:
+      description: Modèle contenant l'info d'un sponsor
+      properties:
+        id: 
+          type: integer
+          example: 55
+        nom: 
+          type: string
+          example: Red Bull
+        adresse:
+          type: string
+          example: Avenue du lac
+        numéro:
+          type: integer
+          example: 1
+        codepostal:
+          type: integer
+          example: 5234
+        ville:
+          type: string
+          example: Salzbourg
+     
+    sponsors:
+      description: Modèle contenant plusieurs sponsors
+      items:
+        type: object         
+        $ref: '#/components/schemas/sponsor'
