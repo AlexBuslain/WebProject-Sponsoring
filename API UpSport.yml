@@ -401,10 +401,7 @@ components:
     accord:
       description: Modèle contenant l'info de l'accord
       properties:
-
-        accord_id:
-          type: integer
-          example: 22 
+      
         sponsor:
           type: string
           example: Red Bull
@@ -429,9 +426,7 @@ components:
     contrepartie:
       description: Modèle contenant l'info d'une contrepartie
       properties:
-        contrepartie_id: 
-          type: integer
-          example: 9
+
         etat_avancement: 
           type: string
           example: done
@@ -450,9 +445,7 @@ components:
     athlete:
       description: Modèle contenant l'info d'un athlète
       properties:
-        id: 
-          type: integer
-          example: 199
+
         nom: 
           type: string
           example: de Dorlodot
@@ -485,9 +478,7 @@ components:
     sponsor:
       description: Modèle contenant l'info d'un sponsor
       properties:
-        id: 
-          type: integer
-          example: 55
+
         nom: 
           type: string
           example: Red Bull
