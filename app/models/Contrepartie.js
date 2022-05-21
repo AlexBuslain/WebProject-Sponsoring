@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Contrepartie = db.define('contrepartie',{
+const Contrepartie = db.define('contreparties',{
 
     contrepartie_id: {
         type: Sequelize.INTEGER,

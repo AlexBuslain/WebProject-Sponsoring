@@ -4,7 +4,6 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 const db = require('../config/database');
-const Accord = require('../models/Accord');
 const Contrepartie = require('../models/Contrepartie');
 
 
@@ -15,7 +14,6 @@ router.get('/',(req, res) =>
         const ags = {
             context: contreparties.map(data =>{
                 return{
-                    accord_id: data.accord_id,
                     etat_avancement: data.etat_avancement,
                     statut: data.statut,
                 }
@@ -34,7 +32,6 @@ router.get('/id=:contrepartie_id',(req,res)=>{
         .then( data => {
             const ag = {
                 context: {                    
-                    accord_id: data.accord_id,
                     etat_avancement: data.etat_avancement,
                     statut: data.statut,
                 }
@@ -75,7 +72,7 @@ router.put('/id=:contrepartie_id',(req,res)=>{
     }
     console.log(obj)
     
-    let {name, description, country} = obj;
+    let {statut} = obj;
     console.log(req.body);
 
 
@@ -85,7 +82,7 @@ router.put('/id=:contrepartie_id',(req,res)=>{
         },
         {where: {id: contrepartie_id}}
     )
-        .then(dest =>{
+        .then(contrepart =>{
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({message: "contrepartie modified"}));
         })

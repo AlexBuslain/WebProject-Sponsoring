@@ -10,7 +10,7 @@ servers:
 
 #ACCORD
 paths:
-  /accord:
+  /accords:
     get:
       tags:
       - Accord
@@ -25,7 +25,7 @@ paths:
                 $ref: '#/components/schemas/accords'
 
 
-  /accord?id={accord_id}:
+  /accords?id={accord_id}:
     get:
       tags:
       - Accord
@@ -93,7 +93,7 @@ paths:
                 $ref: '#/components/schemas/GoodResponse'
                 
 
-  /accord/add:
+  /accords/add:
     post:
       tags:
       - Accord
@@ -115,7 +115,7 @@ paths:
                 $ref: '#/components/schemas/GoodResponse'
 
 
-  /accord/search?term={term}:
+  /accords/search?term={term}:
     get:
       tags:
       - Accord
@@ -141,7 +141,7 @@ paths:
 
 
 # CONTREPARTIE
-  /accord/contrepartie:
+  /accords/contrepartie:
     get:
       tags:
       - Contrepartie
@@ -156,7 +156,7 @@ paths:
                 $ref: '#/components/schemas/contreparties'
 
 
-  /accord/contrepartie?id={contrepartie_id}:
+  /accords/contrepartie?id={contrepartie_id}:
     get:
       tags:
       - Contrepartie
@@ -225,11 +225,11 @@ paths:
 
 
 # ATHLETE
-  /athlete:
+  /athletes:
     get:
       tags:
-       - Athlète
-      summary: Renvoie tous les athlètes
+       - Athlete
+      summary: Renvoie tous les Athletes
       responses:
         '200':
           description: A JSON array of links
@@ -238,11 +238,11 @@ paths:
               schema:
                 type: array
                 $ref: '#/components/schemas/athletes'
-  /athlete/add:
+  /athletes/add:
     post:
       tags:
-       - Athlète
-      summary: Crée un nouvel athlète
+       - Athlete
+      summary: Crée un nouvel Athlete
       requestBody:
         required: true
         content:
@@ -259,11 +259,11 @@ paths:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
     
-  /athlete?id={id}:
+  /athletes?id={id}:
     get:
       tags:
-      - Athlète 
-      summary: Renvoie un athlète identifié par son id
+      - Athlete 
+      summary: Renvoie un Athlete identifié par son id
       parameters:
         - name: id
           in: path
@@ -283,8 +283,8 @@ paths:
                 $ref: '#/components/schemas/athlete'
     delete:
       tags:
-      - Athlète  
-      summary: Supprime un athlète
+      - Athlete  
+      summary: Supprime un Athlete
       parameters:
         - name: id
           in: path
@@ -305,7 +305,7 @@ paths:
                 $ref: '#/components/schemas/GoodResponse'
 
 # SPONSOR
-  /sponsor:
+  /sponsors:
     get:
       tags:
        - Sponsor
@@ -318,7 +318,7 @@ paths:
               schema:
                 type: array
                 $ref: '#/components/schemas/sponsors'
-  /sponsor/add:
+  /sponsors/add:
     post:
       tags:
        - Sponsor
@@ -339,7 +339,7 @@ paths:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
     
-  /sponsor?id={id}:
+  /sponsors?id={id}:
     get:
       tags:
       - Sponsor 
@@ -405,7 +405,7 @@ components:
         sponsor:
           type: string
           example: Red Bull
-        athlète:
+        athlete:
           type: string
           example: Tom de Dorlodot
         date_signature:
@@ -443,7 +443,7 @@ components:
 
 
     athlete:
-      description: Modèle contenant l'info d'un athlète
+      description: Modèle contenant l'info d'un Athlete
       properties:
 
         nom: 
@@ -458,18 +458,10 @@ components:
         adresse:
           type: string
           example: rue du vent
-        numéro:
-          type: integer
-          example: 123
-        codepostal:
-          type: integer
-          example: 1150
-        ville:
-          type: string
-          example: Bruxelles
+
      
     athletes:
-      description: Modèle contenant plusieurs athlètes
+      description: Modèle contenant plusieurs Athletes
       items:
         type: object         
         $ref: '#/components/schemas/athlete'
@@ -485,15 +477,6 @@ components:
         adresse:
           type: string
           example: Avenue du lac
-        numéro:
-          type: integer
-          example: 1
-        codepostal:
-          type: integer
-          example: 5234
-        ville:
-          type: string
-          example: Salzbourg
      
     sponsors:
       description: Modèle contenant plusieurs sponsors

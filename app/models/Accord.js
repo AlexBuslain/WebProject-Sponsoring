@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Accord = db.define('accord',{
+const Accord = db.define('accords',{
 
     accord_id: {
         type: Sequelize.INTEGER,
@@ -11,7 +11,7 @@ const Accord = db.define('accord',{
     sponsor: {
         type: Sequelize.STRING
     },
-    athlète: {
+    athlete: {
         type: Sequelize.STRING
     },
     date_signature: {

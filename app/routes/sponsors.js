@@ -10,16 +10,13 @@ const Sponsor = require('../models/Sponsor');
 // GET une liste de tous les sponsors
 router.get('/',(req, res) => 
     Sponsor.findAll()    
-    .then(Sponsor => {
+    .then(sponsors => {
         const ags = {
-            context: Sponsor.map(data =>{
+            context: sponsors.map(data =>{
                 return{
+                    sponsor_id: data.sponsor_id,
                     nom: data.nom,
                     adresse: data.adresse,
-                    rue: data.rue,
-                    numéro: data.numéro,
-                    codepostal: data.codepostal,
-                    ville: data.ville,
                 }
             })
         }
@@ -29,19 +26,15 @@ router.get('/',(req, res) =>
 );
 
 // Renvoie les infos d'un sponsor identifié par son id
-router.get('/id=:id',(req,res)=>{
-    id = req.params.id;
+router.get('/id=:sponsor_id',(req,res)=>{
+    sponsor_id = req.params.sponsor_id;
 
-    Sponsor.findByPk(id)
+    Sponsor.findByPk(sponsor_id)
         .then( data => {
             const ag = {
                 context: {                    
                     nom: data.nom,
                     adresse: data.adresse,
-                    rue: data.rue,
-                    numéro: data.numéro,
-                    codepostal: data.codepostal,
-                    ville: data.ville,
                 }
             }
             res.json(ag.context)
@@ -51,11 +44,11 @@ router.get('/id=:id',(req,res)=>{
 });
 
 // Supprime un sponsor
-router.delete('/id=:id',(req,res)=>{
-    id = req.params.id;
+router.delete('/id=:sponsor_id',(req,res)=>{
+    sponsor_id = req.params.sponsor_id;
 
     Sponsor.destroy({
-            where: {id: id}
+            where: {id: sponsor_id}
         }).then( data =>{
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({message: "Sponsor deleted"}));
@@ -72,17 +65,13 @@ router.delete('/id=:id',(req,res)=>{
 // Créer un nouveau sponsor
 router.post('/add',(req, res) => {
     
-    let {nom, adresse, rue, numéro, codepostal, ville} = req.body;
+    let {nom, adresse} = req.body;
     console.log(req.body);
     let errors = [];
 
     // validate fields
     if(!nom){errors.push({text: "pas de nom"})};
     if(!adresse){errors.push({text: "pas d'adresse"})};
-    if(!rue){errors.push({text: "pas de rue"})};
-    if(!numéro){errors.push({text: "pas de numéro"})};
-    if(!codepostal){errors.push({text: "pas de code postal"})};
-    if(!ville){errors.push({text: "pas de ville"})};
 
     //check for errors
     if(errors.length != 0){
@@ -90,26 +79,17 @@ router.post('/add',(req, res) => {
             errors,
             nom,
             adresse,
-            rue,
-            numéro,
-            codepostal,
-            ville,
         })
     } else{
         //insert into table
         Sponsor.create({
             nom,
             adresse,
-            rue,
-            numéro,
-            codepostal,
-            ville,
         })
-
 
             // .then(sponsors => res.redirect('/sponsors')) 
             
-            .then(dest =>{
+            .then(sponso =>{
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({message: "Sponsor added"}));
             })

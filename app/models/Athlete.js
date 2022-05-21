@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Athlete = db.define('athlète',{
+const Athlete = db.define('athletes',{
 
-    id: {
+    athlete_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -18,18 +18,6 @@ const Athlete = db.define('athlète',{
         type: Sequelize.STRING
     },
     adresse: {
-        type: Sequelize.STRING
-    },
-    rue: {
-        type: Sequelize.STRING
-    },
-    numéro: {
-        type: Sequelize.INTEGER
-    },
-    codepostal: {
-        type: Sequelize.INTEGER
-    },
-    ville: {
         type: Sequelize.STRING
     },
 

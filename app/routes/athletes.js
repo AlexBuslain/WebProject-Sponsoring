@@ -3,25 +3,21 @@ const router = express.Router();
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-const db = require('../config/database');
-const Athlète = require('../models/Athlete');
+//const db = require('../config/database');
+const Athlete = require('../models/Athlete');
 
 
-// GET une liste de tous les athlètes
+// GET une liste de tous les Athletes
 router.get('/',(req, res) => 
-    Athlète.findAll()    
-    .then(Athlète => {
+    Athlete.findAll()    
+    .then(athletes => {
         const ags = {
-            context: Athlète.map(data =>{
+            context: athletes.map(data =>{
                 return{
                     nom: data.nom,
                     prenom: data.prenom,
                     discipline: data.discipline,
                     adresse: data.adresse,
-                    rue: data.rue,
-                    numéro: data.numéro,
-                    codepostal: data.codepostal,
-                    ville: data.ville,
                 }
             })
         }
@@ -30,11 +26,11 @@ router.get('/',(req, res) =>
     .catch(err => res.status(500).json({message: err})) 
 );
 
-// Renvoie les infos d'un athlète identifié par son id
-router.get('/id=:id',(req,res)=>{
-    id = req.params.id;
+// Renvoie les infos d'un Athlete identifié par son id
+router.get('/id=:athlete_id',(req,res)=>{
+    athlete_id = req.params.athlete_id;
 
-    Athlète.findByPk(id)
+    Athlete.findByPk(athlete_id)
         .then( data => {
             const ag = {
                 context: {                    
@@ -42,10 +38,6 @@ router.get('/id=:id',(req,res)=>{
                     prenom: data.prenom,
                     discipline: data.discipline,
                     adresse: data.adresse,
-                    rue: data.rue,
-                    numéro: data.numéro,
-                    codepostal: data.codepostal,
-                    ville: data.ville,
                 }
             }
             res.json(ag.context)
@@ -54,15 +46,15 @@ router.get('/id=:id',(req,res)=>{
    
 });
 
-// Supprime un athlète
-router.delete('/id=:id',(req,res)=>{
-    id = req.params.id;
+// Supprime un Athlete
+router.delete('/id=:athlete_id',(req,res)=>{
+    athlete_id = req.params.athlete_id;
 
-    Athlète.destroy({
-            where: {id: id}
+    Athlete.destroy({
+            where: {id: athlete_id}
         }).then( data =>{
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({message: "Athlète deleted"}));
+            res.end(JSON.stringify({message: "Athlete deleted"}));
         }).catch(err => {
             res.status(500).json({message: err.message})
         })
@@ -73,10 +65,10 @@ router.delete('/id=:id',(req,res)=>{
 });
 
 
-// Créer un nouvel athlète
+// Créer un nouvel Athlete
 router.post('/add',(req, res) => {
     
-    let {nom, prenom, discipline, adresse, rue, numéro, codepostal, ville} = req.body;
+    let {nom, prenom, discipline, adresse} = req.body;
     console.log(req.body);
     let errors = [];
 
@@ -85,10 +77,6 @@ router.post('/add',(req, res) => {
     if(!prenom){errors.push({text: "pas de prenom"})};
     if(!discipline){errors.push({text: "pas de discipline"})};
     if(!adresse){errors.push({text: "pas d'adresse"})};
-    if(!rue){errors.push({text: "pas de rue"})};
-    if(!numéro){errors.push({text: "pas de numéro"})};
-    if(!codepostal){errors.push({text: "pas de code postal"})};
-    if(!ville){errors.push({text: "pas de ville"})};
 
     //check for errors
     if(errors.length != 0){
@@ -98,30 +86,22 @@ router.post('/add',(req, res) => {
             prenom,
             discipline,
             adresse,
-            rue,
-            numéro,
-            codepostal,
-            ville,
         })
     } else{
         //insert into table
-        Athlète.create({
+        Athlete.create({
             nom,
             prenom,
             discipline,
             adresse,
-            rue,
-            numéro,
-            codepostal,
-            ville,
         })
 
 
-            // .then(athlètes => res.redirect('/athlètes')) 
+            // .then(Athletes => res.redirect('/Athletes')) 
             
             .then(dest =>{
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({message: "Athlète added"}));
+                res.send(JSON.stringify({message: "Athlete added"}));
             })
             .catch(err => res.status(500).json({message: err})) 
         }   

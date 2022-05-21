@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Sponsor = db.define('accord',{
+const Sponsor = db.define('sponsors',{
 
-    id: {
+    sponsor_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -12,18 +12,6 @@ const Sponsor = db.define('accord',{
         type: Sequelize.STRING
     },
     adresse: {
-        type: Sequelize.STRING
-    },
-    rue: {
-        type: Sequelize.STRING
-    },
-    numéro: {
-        type: Sequelize.INTEGER
-    },
-    codepostal: {
-        type: Sequelize.INTEGER
-    },
-    ville: {
         type: Sequelize.STRING
     },
 

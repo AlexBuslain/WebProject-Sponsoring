@@ -18,7 +18,7 @@ Ces enjeux représentent la surface visible de l’iceberg. Immergé sous la sur
 un panel très large de disciplines : le content marketing, le développement digital mais surtout
 le sponsoring. Vital pour la majorité des sportifs de l’extrême, le sponsoring occupe une place
 centrale dans la professionnalisation de ces sports. Dans un tel contexte, il est nécessaire
-d’accompagner ces athlètes dans leur professionnalisation tout en restant cohérent avec la
+d’accompagner ces Athletes dans leur professionnalisation tout en restant cohérent avec la
 digitalisation actuelle. La gestion et le suivi des accords de sponsoring, et des contreparties
 négociées, dans ce contexte sont donc cruciales. C’est précisément sur cette gestion que mon
 projet va se pencher.

@@ -17,14 +17,14 @@ db.authenticate()
 const app = express();
 
 // paths
-const publicDirectory = path.join(__dirname, 'app/public');
-const viewsPath = path.join(__dirname, 'app/views');
-app.set('views', viewsPath);
+//const publicDirectory = path.join(__dirname, 'app/public');
+//const viewsPath = path.join(__dirname, 'app/views');
+// app.set('views', viewsPath);
 
 
 // Set static folder
-app.use(express.static(publicDirectory));
-app.use(express.static("img"));
+//app.use(express.static(publicDirectory));
+//app.use(express.static("img"));
 
 // Body Parser to use json
 // app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 
 // All routes
 app.use('/accords',require('./app/routes/accords'));
-app.use('/athlètes', require('./app/routes/athlètes'));
+app.use('/athletes', require('./app/routes/athletes'));
 app.use('/contreparties', require('./app/routes/contreparties'));
 app.use('/sponsors', require('./app/routes/sponsors'));
 

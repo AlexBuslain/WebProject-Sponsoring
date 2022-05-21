@@ -14,7 +14,7 @@ router.get('/',(req, res) =>
             context: accords.map(data =>{
                 return{
                     sponsor: data.sponsor,
-                    athlète: data.athlète,
+                    athlete: data.athlete,
                     date_signature: data.date_signature,
                     date_fin: data.date_fin
                 }
@@ -34,7 +34,7 @@ router.get('/id=:accord_id',(req,res)=>{
             const ag = {
                 context: {                    
                     sponsor: data.sponsor,
-                    athlète: data.athlète,
+                    athlete: data.athlete,
                     date_signature: data.date_signature,
                     date_fin: data.date_fin
                 }
@@ -82,7 +82,7 @@ router.put('/id=:accord_id',(req,res)=>{
     // update dans la table
     Accord.update({
         sponsor,
-        athlète,
+        athlete,
         date_signature,
         date_fin,
         },
@@ -102,12 +102,12 @@ router.put('/id=:accord_id',(req,res)=>{
 // Créer un nouvel accord
 router.post('/add',(req, res) => {
     
-    let {sponsor,athlète,date_signature,date_fin} = req.body;
+    let {sponsor,athlete,date_signature,date_fin} = req.body;
     let errors = [];
 
     // Validation des champs
     if(!sponsor){errors.push({text: "no sponsor"})};
-    if(!athlète){errors.push({text: "no athlète"})};
+    if(!athlete){errors.push({text: "no athlete"})};
     if(!date_signature){errors.push({text: "no date_signature"})};
     if(!date_fin){errors.push({text: "no date_fin"})};
 
@@ -116,7 +116,7 @@ router.post('/add',(req, res) => {
         res.render('add',{
             errors,
             sponsor,
-            athlète,
+            athlete,
             date_signature,
             date_fin
         })
@@ -124,7 +124,7 @@ router.post('/add',(req, res) => {
         //insert dans la table
         Accord.create({
             sponsor,
-            athlète,
+            athlete,
             date_signature,
             date_fin
         })
@@ -145,7 +145,7 @@ router.get('/search',(req, res) =>{
         where: {
             [Op.or]: {
                 sponsor: db.where(db.fn('LOWER',db.col('sponsor')),'LIKE','%'+term+'%'),
-                athlète: db.where(db.fn('LOWER',db.col('athlète')),'LIKE','%'+term+'%'),
+                athlete: db.where(db.fn('LOWER',db.col('athlete')),'LIKE','%'+term+'%'),
                 date_signature: db.where(db.fn('LOWER',db.col('date_signature')),'LIKE','%'+term+'%'),
             }
         }
@@ -155,7 +155,7 @@ router.get('/search',(req, res) =>{
             context: accord.map(data =>{
                 return{
                     sponsor: data.sponsor,
-                    athlète: data.athlète,
+                    athlete: data.athlete,
                     date_signature: data.date_signature,
                 }
             })
