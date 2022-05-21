@@ -10,7 +10,7 @@ db.authenticate()
   .then(()=> console.log('DB connected...'))
   .catch(err => console.log('Error:' + err) )
 
-//db.sync({force: true})
+// db.sync({force: true})
 // Forcer la synchronisation du server et refresh les tables.
 
 // app init
@@ -40,6 +40,8 @@ app.use('/accords',require('./app/routes/accords'));
 app.use('/athletes', require('./app/routes/athletes'));
 app.use('/contreparties', require('./app/routes/contreparties'));
 app.use('/sponsors', require('./app/routes/sponsors'));
+app.use('/links', require('./app/routes/links'));
+
 
 
 

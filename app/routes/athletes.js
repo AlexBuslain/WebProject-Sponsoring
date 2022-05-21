@@ -14,6 +14,7 @@ router.get('/',(req, res) =>
         const ags = {
             context: athletes.map(data =>{
                 return{
+                    athlete_id: data.athlete_id,
                     nom: data.nom,
                     prenom: data.prenom,
                     discipline: data.discipline,
@@ -27,13 +28,14 @@ router.get('/',(req, res) =>
 );
 
 // Renvoie les infos d'un Athlete identifié par son id
-router.get('/id=:athlete_id',(req,res)=>{
+router.get('/:athlete_id',(req,res)=>{
     athlete_id = req.params.athlete_id;
 
     Athlete.findByPk(athlete_id)
         .then( data => {
             const ag = {
-                context: {                    
+                context: {       
+                    athlete_id: data.athlete_id,             
                     nom: data.nom,
                     prenom: data.prenom,
                     discipline: data.discipline,
@@ -47,18 +49,19 @@ router.get('/id=:athlete_id',(req,res)=>{
 });
 
 // Supprime un Athlete
-router.delete('/id=:athlete_id',(req,res)=>{
+router.delete('/:athlete_id',(req,res)=>{
     athlete_id = req.params.athlete_id;
-
-    Athlete.destroy({
+    Athlete.findByPk(athlete_id)
+    .then(
+        Athlete.destroy({
             where: {id: athlete_id}
         }).then( data =>{
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({message: "Athlete deleted"}));
         }).catch(err => {
-            res.status(500).json({message: err.message})
+                res.status(500).json({message: err.message})
         })
-    .catch(err => {
+    ).catch(err => {
         res.status(500).json({message: err.message})
     })  
 
@@ -66,7 +69,7 @@ router.delete('/id=:athlete_id',(req,res)=>{
 
 
 // Créer un nouvel Athlete
-router.post('/add',(req, res) => {
+router.post('/',(req, res) => {
     
     let {nom, prenom, discipline, adresse} = req.body;
     console.log(req.body);
@@ -108,6 +111,41 @@ router.post('/add',(req, res) => {
     }
     
     
+);
+
+
+
+// Modifie un athlète
+router.put('/:athlete_id',(req,res)=>{
+    athlete_id = req.params.athlete_id;
+    try {
+        var obj = JSON.parse(req.body.data).value;
+    }catch {
+        var obj = req.body;
+    }
+    console.log(obj)
+    
+    let {nom, prenom, discipline, adresse} = obj;
+    console.log(req.body);
+
+
+    // update dans la table
+    Athlete.update({
+        nom,
+        prenom,
+        discipline,
+        adresse,
+        },
+        {where: {id: athlete_id}}
+    )
+        .then(athlete =>{
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({message: "Athlete modified"}));
+        })
+        .catch(err => res.status(500).json({message: err})) 
+    }   
+
+   
 );
 
 module.exports = router;

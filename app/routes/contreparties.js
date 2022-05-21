@@ -7,13 +7,15 @@ const db = require('../config/database');
 const Contrepartie = require('../models/Contrepartie');
 
 
-// GET une liste de tous les accords
+// GET une liste de toutes les contreparties
 router.get('/',(req, res) => 
     Contrepartie.findAll()    
     .then(contreparties => {
         const ags = {
             context: contreparties.map(data =>{
                 return{
+                    contrepartie_id: data.contrepartie_id,
+                    description: data.description,
                     etat_avancement: data.etat_avancement,
                     statut: data.statut,
                 }
@@ -24,14 +26,46 @@ router.get('/',(req, res) =>
     .catch(err => res.status(500).json({message: err})) 
 );
 
+
+// Créer une nouvelle contrepartie
+router.post('/',(req, res) => {
+    let {description,etat_avancement, statut} = req.body;
+    let errors = [];
+
+    // validate fields
+    if(!description){errors.push({text: "pas d'état de description"})};
+    if(!etat_avancement){errors.push({text: "pas d'état d'avancement"})};
+    if(!statut){errors.push({text: "pas de statut"})};
+    //check for errors
+    if(errors.length != 0){
+        res.send(JSON.stringify(errors))
+    } else {
+        //insert into table
+        Contrepartie.create({
+            errors,
+            description,
+            etat_avancement,
+            statut
+        })
+            .then(Contrepartie =>{
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({message: "Contrepartie added"}));
+            })
+            .catch(err => res.status(500).json({message: err}))
+        }   
+}  
+);
+
+
 // Renvoie les infos d'une contrepartie identifié par son id
-router.get('/id=:contrepartie_id',(req,res)=>{
+router.get('/:contrepartie_id',(req,res)=>{
     contrepartie_id = req.params.contrepartie_id;
 
     Contrepartie.findByPk(contrepartie_id)
         .then( data => {
             const ag = {
-                context: {                    
+                context: {    
+                    description: data.description,                
                     etat_avancement: data.etat_avancement,
                     statut: data.statut,
                 }
@@ -42,19 +76,20 @@ router.get('/id=:contrepartie_id',(req,res)=>{
    
 });
 
-// Supprime un accord
-router.delete('/id=:contrepartie_id',(req,res)=>{
+// Supprime une contrepartie
+router.delete('/:contrepartie_id',(req,res)=>{
     contrepartie_id = req.params.contrepartie_id;
-
-    Contrepartie.destroy({
-            where: {id: contrepartie_id}
-        }).then( data =>{
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({message: "contrepartie deleted"}));
-        }).catch(err => {
-            res.status(500).json({message: err.message})
-        })
-    .catch(err => {
+    Contrepartie.findByPk(contrepartie_id)
+    .then(
+        Contrepartie.destroy({
+                where: {id: contrepartie_id}
+            }).then( data =>{
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({message: "Contrepartie deleted"}));
+            }).catch(err => {
+                res.status(500).json({message: err.message})
+            })
+    ).catch(err => {
         res.status(500).json({message: err.message})
     })  
 
@@ -63,7 +98,7 @@ router.delete('/id=:contrepartie_id',(req,res)=>{
 
 
 // valide (mofifie) une contrepartie
-router.put('/id=:contrepartie_id',(req,res)=>{
+router.put('/:contrepartie_id',(req,res)=>{
     contrepartie_id = req.params.contrepartie_id;
     try {
         var obj = JSON.parse(req.body.data).value;

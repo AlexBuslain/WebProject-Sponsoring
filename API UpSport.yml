@@ -5,30 +5,66 @@ info:
   version: '1.0'
 servers:
   - url: http://localhost:3000
-  - url: https://api.server.test/v1
+  # - url: https://api.server.test/v1
   
+paths:
 
 #ACCORD
-paths:
   /accords:
     get:
       tags:
-      - Accord
+        - Accord
       summary: Renvoie tous les accords
       responses:
         '200':
-          description: A JSON array of destinations
+          description: Un tableau JSON d'accords
           content:
             application/json:
               schema:
                 type: array
                 $ref: '#/components/schemas/accords'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
 
 
-  /accords?id={accord_id}:
+    post:
+      tags:
+        - Accord
+      summary: Ajoute/Crée un accord
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/accord'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+        '400':
+            description: Not OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/BadResponse'
+
+
+### /accords?id={accord_id}:
+  /accords/{accord_id}:
     get:
       tags:
-      - Accord
+        - Accord
       summary: renvoie un accord identifié par son id
       parameters:
         - name: accord_id
@@ -47,20 +83,25 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/accord'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
 
     delete:
       tags:
-      - Accord
-      summary: Supprime un accord
+        - Accord
+      summary: Supprime un accord identifié par son id
       parameters:
-        - name: accord_id
-          in: path
+        - in: path
+          name: accord_id
           required: true
-          description: Parameter description in CommonMark or HTML.
           schema:
             type: integer
-            format: int64
-            minimum: 1
+            example: 22
       responses:
         '200':
           description: OK
@@ -69,82 +110,20 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
-
-    put: 
-      tags:
-      - Accord
-      summary: Modifie un accord
-      parameters:
-        - name: accord_id
-          in: path
-          required: true
-          description: Parameter description in CommonMark or HTML.
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-      responses:
-        '200':
-          description: OK
+        '400':
+          description: Not OK
           content:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/GoodResponse'
-                
-
-  /accords/add:
-    post:
-      tags:
-      - Accord
-      summary: Ajoute/Crée un accord
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              $ref: '#/components/schemas/accord'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/GoodResponse'
-
-
-  /accords/search?term={term}:
-    get:
-      tags:
-      - Accord
-      summary: Chercher avec un term et obtenir les accords correspondants
-      parameters:
-        - name: term
-          in: path
-          required: true
-          description: Parameter description in CommonMark or HTML.
-          schema:
-            type: string
-            minimum: 1
-            example: XXX
-      responses:
-        '200':
-          description: A JSON dict of destination
-          content:
-            application/json:
-              schema:
-                type: array
-                $ref: '#/components/schemas/accords'
-
+                $ref: '#/components/schemas/BadResponse'
 
 
 # CONTREPARTIE
-  /accords/contrepartie:
+  /contrepartie:
     get:
       tags:
-      - Contrepartie
+        - Contrepartie
       summary: Renvoie toutes les contreparties
       responses:
         '200':
@@ -154,12 +133,47 @@ paths:
               schema:
                 type: array
                 $ref: '#/components/schemas/contreparties'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+    post:
+        tags:
+          - Contrepartie
+        summary: Ajoute/Crée une contrepartie
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/contrepartie'
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  $ref: '#/components/schemas/GoodResponse'
+          '400':
+              description: Not OK
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    $ref: '#/components/schemas/BadResponse'
 
 
-  /accords/contrepartie?id={contrepartie_id}:
+
+  /contrepartie/{contrepartie_id}:
     get:
       tags:
-      - Contrepartie
+        - Contrepartie
       summary: Renvoie les infos d'une contrepartie identifiée par son id
       parameters:
         - name: contrepartie_id
@@ -178,9 +192,17 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/contrepartie'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
     delete:
       tags:
-      - Contrepartie  
+        - Contrepartie  
       summary: Supprime une contrepartie
       parameters:
         - name: contrepartie_id
@@ -200,9 +222,17 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
     post:
       tags:
-      - Contrepartie
+        - Contrepartie
       summary: Valide une contrepartie
       parameters:
         - name: contrepartie_id
@@ -222,13 +252,20 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
 
 
 # ATHLETE
   /athletes:
     get:
       tags:
-       - Athlete
+        - Athlete
       summary: Renvoie tous les Athletes
       responses:
         '200':
@@ -238,10 +275,17 @@ paths:
               schema:
                 type: array
                 $ref: '#/components/schemas/athletes'
-  /athletes/add:
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
     post:
       tags:
-       - Athlete
+        - Athlete
       summary: Crée un nouvel Athlete
       requestBody:
         required: true
@@ -258,14 +302,21 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
     
-  /athletes?id={id}:
+  /athletes/{athlete_id}:
     get:
       tags:
-      - Athlete 
+        - Athlete 
       summary: Renvoie un Athlete identifié par son id
       parameters:
-        - name: id
+        - name: athlete_id
           in: path
           required: true
           description: Parameter description in CommonMark or HTML.
@@ -281,12 +332,55 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/athlete'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+    put:
+      tags:
+        - Athlete
+      summary: Modifie un athlète identifié par son id
+      parameters:
+        - in: path
+          name: athlete_id
+          required: true
+          schema:
+            type: integer
+            example: 234
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/athlete'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+
     delete:
       tags:
-      - Athlete  
+        - Athlete  
       summary: Supprime un Athlete
       parameters:
-        - name: id
+        - name: athlete_id
           in: path
           required: true
           description: Parameter description in CommonMark or HTML.
@@ -303,12 +397,19 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
 
 # SPONSOR
   /sponsors:
     get:
       tags:
-       - Sponsor
+        - Sponsor
       summary: Renvoie tous les sponsors
       responses:
         '200':
@@ -318,18 +419,17 @@ paths:
               schema:
                 type: array
                 $ref: '#/components/schemas/sponsors'
-  /sponsors/add:
     post:
       tags:
-       - Sponsor
+        - Sponsor
       summary: Crée un nouveau sponsor
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              $ref: '#/components/schemas/sponsor'
+                type: array
+                $ref: '#/components/schemas/sponsor'
       responses:
         '200':
           description: OK
@@ -338,14 +438,21 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
     
-  /sponsors?id={id}:
+  /sponsors/{sponsor_id}:
     get:
       tags:
-      - Sponsor 
+        - Sponsor 
       summary: Renvoie un sponsor identifié par son id
       parameters:
-        - name: id
+        - name: sponsor_id
           in: path
           required: true
           description: Parameter description in CommonMark or HTML.
@@ -361,12 +468,156 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/sponsor'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+    put:
+      tags:
+        - Sponsor
+      summary: Modifie un sponsor identifié par son id
+      parameters:
+        - in: path
+          name: sponsor_id
+          required: true
+          schema:
+            type: integer
+            example: 2345
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              $ref: '#/components/schemas/sponsor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+
     delete:
       tags:
-      - Sponsor  
+        - Sponsor  
       summary: Supprime un sponsor
       parameters:
-        - name: id
+        - in: path
+          name: sponsor_id
+          required: true
+          schema:
+            type: integer
+            example: 199
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+
+
+  # LINKS
+  /links:
+    get:
+      tags:
+        - Lien  
+      summary: Obtenir tous les liens
+      responses:
+        '200':
+          description: Un tableau JSON de liens
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/Links'
+    post:
+      tags:
+        - Lien  
+      summary: Ajouter un nouveau lien
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/Link'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+      
+  /links/{link_id}:
+    get:
+      tags:
+        - Lien  
+      summary: Renvoie l'info d'un lien identifié par son id
+      parameters:
+        - name: link_id
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of Link
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Link'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
+
+    delete:
+      tags:
+        - Lien  
+      summary: Supprime un lien
+      parameters:
+        - name: link_id
           in: path
           required: true
           description: Parameter description in CommonMark or HTML.
@@ -383,6 +634,13 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/GoodResponse'
+        '400':
+          description: Not OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/BadResponse'
 
 
 
@@ -397,6 +655,13 @@ components:
         message: 
           type: string
           example: Operation done
+
+    BadResponse:
+      description: A bad response
+      properties:
+        message: 
+          type: string
+          example: Operation not done
     
     accord:
       description: Modèle contenant l'info de l'accord
@@ -410,10 +675,12 @@ components:
           example: Tom de Dorlodot
         date_signature:
           type: string
-          example: 22/10/1997
+          format: date
+          example: "1997-10-22"
         date_fin:
           type: string
-          example: 23/10/2025
+          format: date
+          example: "2025-10-22"
         
     accords:
       description: Modèle contenant plusieurs accords
@@ -427,6 +694,9 @@ components:
       description: Modèle contenant l'info d'une contrepartie
       properties:
 
+        description:
+          type: string
+          example: Poster 10 photos sur Instagram par mois
         etat_avancement: 
           type: string
           example: done
@@ -483,3 +753,19 @@ components:
       items:
         type: object         
         $ref: '#/components/schemas/sponsor'
+
+
+    Link:
+      description: Modèle contenant l'info d'un lien
+      properties:
+        agency_id:
+          type: integer
+          example: 1
+        destination_id:
+          type: integer
+          example: 1
+    Links:
+      description: Modèle contenant plusieurs liens
+      items:
+        type: object         
+        $ref: '#/components/schemas/Link'

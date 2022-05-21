@@ -26,7 +26,7 @@ router.get('/',(req, res) =>
 );
 
 // Renvoie les infos d'un sponsor identifié par son id
-router.get('/id=:sponsor_id',(req,res)=>{
+router.get('/:sponsor_id',(req,res)=>{
     sponsor_id = req.params.sponsor_id;
 
     Sponsor.findByPk(sponsor_id)
@@ -44,18 +44,19 @@ router.get('/id=:sponsor_id',(req,res)=>{
 });
 
 // Supprime un sponsor
-router.delete('/id=:sponsor_id',(req,res)=>{
+router.delete('/:sponsor_id',(req,res)=>{
     sponsor_id = req.params.sponsor_id;
-
-    Sponsor.destroy({
-            where: {id: sponsor_id}
-        }).then( data =>{
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({message: "Sponsor deleted"}));
-        }).catch(err => {
-            res.status(500).json({message: err.message})
-        })
-    .catch(err => {
+    Sponsor.findByPk(sponsor_id)
+    .then(
+        Sponsor.destroy({
+                where: {id: sponsor_id}
+            }).then( data =>{
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({message: "Sponsor deleted"}));
+            }).catch(err => {
+                res.status(500).json({message: err.message})
+            })
+    ).catch(err => {
         res.status(500).json({message: err.message})
     })  
 
@@ -63,7 +64,7 @@ router.delete('/id=:sponsor_id',(req,res)=>{
 
 
 // Créer un nouveau sponsor
-router.post('/add',(req, res) => {
+router.post('/',(req, res) => {
     
     let {nom, adresse} = req.body;
     console.log(req.body);
@@ -98,6 +99,40 @@ router.post('/add',(req, res) => {
     }
     
     
+);
+
+
+
+
+// Modifie un sponsor
+router.put('/:sponsor_id',(req,res)=>{
+    sponsor_id = req.params.sponsor_id;
+    try {
+        var obj = JSON.parse(req.body.data).value;
+    }catch {
+        var obj = req.body;
+    }
+    console.log(obj)
+    
+    let {nom, adresse} = obj;
+    console.log(req.body);
+
+
+    // update dans la table
+    Sponsor.update({
+        nom,
+        adresse,
+        },
+        {where: {id: sponsor_id}}
+    )
+        .then(sponsor =>{
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({message: "Sponsor modified"}));
+        })
+        .catch(err => res.status(500).json({message: err})) 
+    }   
+
+   
 );
 
 module.exports = router;

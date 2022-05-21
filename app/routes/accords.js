@@ -26,7 +26,7 @@ router.get('/',(req, res) =>
 );
 
 // Renvoie un accord identifié par son id
-router.get('/id=:accord_id',(req,res)=>{
+router.get('/:accord_id',(req,res)=>{
     accord_id = req.params.accord_id;
 
     Accord.findByPk(accord_id)
@@ -46,18 +46,19 @@ router.get('/id=:accord_id',(req,res)=>{
 });
 
 // Supprime un accord
-router.delete('/id=:accord_id',(req,res)=>{
+router.delete('/:accord_id',(req,res)=>{
     accord_id = req.params.accord_id;
-
-    Accord.destroy({
-            where: {id: accord_id}
-        }).then( data =>{
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({message: "accord deleted"}));
-        }).catch(err => {
-            res.status(500).json({message: err.message})
-        })
-    .catch(err => {
+    Accord.findByPk(accord_id)
+    .then(
+        Accord.destroy({
+                where: {id: accord_id}
+            }).then( data =>{
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({message: "Accord deleted"}));
+            }).catch(err => {
+                res.status(500).json({message: err.message})
+            })
+    ).catch(err => {
         res.status(500).json({message: err.message})
     })  
 
@@ -66,7 +67,7 @@ router.delete('/id=:accord_id',(req,res)=>{
 
 
 // Modifie un accord
-router.put('/id=:accord_id',(req,res)=>{
+router.put('/:accord_id',(req,res)=>{
     accord_id = req.params.accord_id;
     try {
         var obj = JSON.parse(req.body.data).value;
@@ -75,12 +76,13 @@ router.put('/id=:accord_id',(req,res)=>{
     }
     console.log(obj)
     
-    let {name, description, country} = obj;
+    let {accord_id,sponsor,athlete,date_signature,date_fin} = obj;
     console.log(req.body);
 
 
     // update dans la table
     Accord.update({
+        accord_id,
         sponsor,
         athlete,
         date_signature,
@@ -88,9 +90,9 @@ router.put('/id=:accord_id',(req,res)=>{
         },
         {where: {id: accord_id}}
     )
-        .then(dest =>{
+        .then(Accord =>{
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({message: "accord modified"}));
+            res.end(JSON.stringify({message: "Accord modified"}));
         })
         .catch(err => res.status(500).json({message: err})) 
     }   
@@ -98,72 +100,36 @@ router.put('/id=:accord_id',(req,res)=>{
    
 );
 
-
-// Créer un nouvel accord
-router.post('/add',(req, res) => {
-    
+// Crée un nouvel accord
+router.post('/',(req, res) => {
     let {sponsor,athlete,date_signature,date_fin} = req.body;
     let errors = [];
-
     // Validation des champs
     if(!sponsor){errors.push({text: "no sponsor"})};
     if(!athlete){errors.push({text: "no athlete"})};
     if(!date_signature){errors.push({text: "no date_signature"})};
     if(!date_fin){errors.push({text: "no date_fin"})};
-
-    //check les erreurs
+    //check for errors
     if(errors.length != 0){
-        res.render('add',{
+        res.send(JSON.stringify(errors))
+    } else {
+        //insert into table
+        Accord.create({
             errors,
             sponsor,
             athlete,
             date_signature,
             date_fin
         })
-    } else{
-        //insert dans la table
-        Accord.create({
-            sponsor,
-            athlete,
-            date_signature,
-            date_fin
-        })
-            // .then(accords => res.redirect('/accords')) 
-            .then(res.json({response: "accord added"}))
-            .catch(err => res.status(500).json({message: err})) 
+            .then(Accord =>{
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({message: "Accord added"}));
+            })
+            .catch(err => res.status(500).json({message: err}))
         }   
-    }
-    
+    }  
 );
 
-// Cherche un accord
-router.get('/search',(req, res) =>{
-    let {term} = req.query;
-    term = term.toLowerCase();
-
-    Accord.findAll({
-        where: {
-            [Op.or]: {
-                sponsor: db.where(db.fn('LOWER',db.col('sponsor')),'LIKE','%'+term+'%'),
-                athlete: db.where(db.fn('LOWER',db.col('athlete')),'LIKE','%'+term+'%'),
-                date_signature: db.where(db.fn('LOWER',db.col('date_signature')),'LIKE','%'+term+'%'),
-            }
-        }
-    })
-    .then(accord => {
-        const dests = {
-            context: accord.map(data =>{
-                return{
-                    sponsor: data.sponsor,
-                    athlete: data.athlete,
-                    date_signature: data.date_signature,
-                }
-            })
-        }
-        res.json(dests.context)
-    })
-    .catch(err => res.status(500).json({message: err})) 
-})
 
 
 module.exports = router;

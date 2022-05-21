@@ -8,6 +8,9 @@ const Contrepartie = db.define('contreparties',{
         autoIncrement: true,
         primaryKey: true
     },
+    description: {
+        type: Sequelize.STRING,
+    },
     etat_avancement: {
         type: Sequelize.STRING
     },
