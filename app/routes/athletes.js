@@ -54,7 +54,7 @@ router.delete('/:athlete_id',(req,res)=>{
     Athlete.findByPk(athlete_id)
     .then(
         Athlete.destroy({
-            where: {id: athlete_id}
+            where: {athlete_id: athlete_id}
         }).then( data =>{
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({message: "Athlete deleted"}));
@@ -136,7 +136,7 @@ router.put('/:athlete_id',(req,res)=>{
         discipline,
         adresse,
         },
-        {where: {id: athlete_id}}
+        {where: {athlete_id: athlete_id}}
     )
         .then(athlete =>{
             res.setHeader('Content-Type', 'application/json');

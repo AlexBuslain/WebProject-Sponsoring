@@ -51,7 +51,7 @@ router.delete('/:accord_id',(req,res)=>{
     Accord.findByPk(accord_id)
     .then(
         Accord.destroy({
-                where: {id: accord_id}
+                where: {accord_id: accord_id}
             }).then( data =>{
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({message: "Accord deleted"}));
@@ -88,7 +88,7 @@ router.put('/:accord_id',(req,res)=>{
         date_signature,
         date_fin,
         },
-        {where: {id: accord_id}}
+        {where: {accord_id: accord_id}}
     )
         .then(Accord =>{
             res.setHeader('Content-Type', 'application/json');

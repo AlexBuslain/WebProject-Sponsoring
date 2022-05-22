@@ -86,7 +86,7 @@ router.get('/:link_id',(req,res)=>{
 router.delete('/:link_id',(req,res)=>{
     link_id = req.params.link_id;
     Link.destroy({
-        where: {id: link_id}
+        where: {link_id: link_id}
     }).then( data =>{
         res.json({message: "link deleted"});
     }).catch(err => {

@@ -82,7 +82,7 @@ router.delete('/:contrepartie_id',(req,res)=>{
     Contrepartie.findByPk(contrepartie_id)
     .then(
         Contrepartie.destroy({
-                where: {id: contrepartie_id}
+                where: {contrepartie_id: contrepartie_id}
             }).then( data =>{
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({message: "Contrepartie deleted"}));
@@ -115,7 +115,7 @@ router.put('/:contrepartie_id',(req,res)=>{
     Contrepartie.update({
         statut,
         },
-        {where: {id: contrepartie_id}}
+        {where: {contrepartie_id: contrepartie_id}}
     )
         .then(contrepart =>{
             res.setHeader('Content-Type', 'application/json');

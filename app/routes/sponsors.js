@@ -49,7 +49,7 @@ router.delete('/:sponsor_id',(req,res)=>{
     Sponsor.findByPk(sponsor_id)
     .then(
         Sponsor.destroy({
-                where: {id: sponsor_id}
+                where: {sponsor_id: sponsor_id}
             }).then( data =>{
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({message: "Sponsor deleted"}));
@@ -123,7 +123,7 @@ router.put('/:sponsor_id',(req,res)=>{
         nom,
         adresse,
         },
-        {where: {id: sponsor_id}}
+        {where: {sponsor_id: sponsor_id}}
     )
         .then(sponsor =>{
             res.setHeader('Content-Type', 'application/json');
