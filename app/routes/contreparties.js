@@ -21,7 +21,7 @@ router.get('/',(req, res) =>
                 }
             })
         }
-        res.json( ags.context);
+        res.json(ags.context);
     })
     .catch(err => res.status(500).json({message: err})) 
 );
@@ -29,11 +29,11 @@ router.get('/',(req, res) =>
 
 // Créer une nouvelle contrepartie
 router.post('/',(req, res) => {
-    let {description,etat_avancement, statut} = req.body;
+    let {description,etat_avancement,statut} = req.body;
     let errors = [];
 
-    // validate fields
-    if(!description){errors.push({text: "pas d'état de description"})};
+    // Validation des champs
+    if(!description){errors.push({text: "pas de description"})};
     if(!etat_avancement){errors.push({text: "pas d'état d'avancement"})};
     if(!statut){errors.push({text: "pas de statut"})};
     //check for errors

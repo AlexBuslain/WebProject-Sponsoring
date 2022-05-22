@@ -120,7 +120,7 @@ paths:
 
 
 # CONTREPARTIE
-  /contrepartie:
+  /contreparties:
     get:
       tags:
         - Contrepartie
@@ -170,7 +170,7 @@ paths:
 
 
 
-  /contrepartie/{contrepartie_id}:
+  /contreparties/{contrepartie_id}:
     get:
       tags:
         - Contrepartie
@@ -186,7 +186,7 @@ paths:
             minimum: 1
       responses:
         '200':
-          description: A JSON dict of Agency
+          description: A JSON dict of contrepartie
           content:
             application/json:
               schema:
@@ -230,7 +230,7 @@ paths:
                 type: object
                 $ref: '#/components/schemas/BadResponse'
 
-    post:
+    put:
       tags:
         - Contrepartie
       summary: Valide une contrepartie
@@ -243,7 +243,13 @@ paths:
             type: integer
             format: int64
             minimum: 1
-          example: 3
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              $ref: '#/components/schemas/contrepartie'
       responses:
         '200':
           description: OK
@@ -711,7 +717,6 @@ components:
         $ref: '#/components/schemas/contrepartie'
 
 
-
     athlete:
       description: Modèle contenant l'info d'un Athlete
       properties:
@@ -758,10 +763,10 @@ components:
     Link:
       description: Modèle contenant l'info d'un lien
       properties:
-        agency_id:
+        accord_id:
           type: integer
           example: 1
-        destination_id:
+        contrepartie_id:
           type: integer
           example: 1
     Links:
