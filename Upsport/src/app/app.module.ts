@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeAccordComponent } from './home-accord/home-accord.component';
-import { HomePageComponent } from './home-page/home-page.component';
 
-
-
+// Utilisation de la librairie HTTP Client pour pouvoir questionner mon serveur à distance.
+import {HttpClientModule} from '@angular/common/http';
+import { AccordComponent } from './accord/accord.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeAccordComponent,
-    HomePageComponent
+    AccordComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

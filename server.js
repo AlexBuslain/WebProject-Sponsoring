@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors"); // Access to CORS policy
+
 
 // Database
 const db = require('./app/config/database');
@@ -13,8 +15,12 @@ db.authenticate()
 // db.sync({force: true})
 // Forcer la synchronisation du server et refresh les tables.
 
+
 // app init
 const app = express();
+
+// Accès droit CORS
+app.use(cors());
 
 // paths
 //const publicDirectory = path.join(__dirname, 'app/public');

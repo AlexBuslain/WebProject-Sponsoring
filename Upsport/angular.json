@@ -3,34 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Upsport": {
+    "UpSport": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:resolver": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        },
         "@schematics/angular:application": {
           "strict": true
         }
@@ -42,18 +17,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/upsport",
+            "outputPath": "dist/up-sport",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -94,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Upsport:build:production"
+              "browserTarget": "UpSport:build:production"
             },
             "development": {
-              "browserTarget": "Upsport:build:development"
+              "browserTarget": "UpSport:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -105,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Upsport:build"
+            "browserTarget": "UpSport:build"
           }
         },
         "test": {
@@ -115,13 +89,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -129,5 +102,5 @@
       }
     }
   },
-  "defaultProject": "Upsport"
+  "defaultProject": "UpSport"
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-// Décorateur qui vient apporter des modifications à une classe.
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'UpSport';
+}
