@@ -34,8 +34,11 @@
                <tr *ngFor="let acc of accords"> <!-- ngFor va me permettre de boucler dans la liste-->
                     <td><span>{{ acc.sponsor }}</span></td>
                     <td><span>{{ acc.athlete }}</span></td>
-                    <td><span></span></td>
                     <td class="buttonCRUD">
+                      <button (click)="goToContrepartie(acc)" class="btn btn-sm goto align">
+                        <i class="fa fa-search"></i>Accéder aux contreparties</button> <!--Bouton pour afficher les contreparties d'un accord-->
+                    </td>
+                      <td class="buttonCRUD">
                         <button (click)="showInfoForm(acc)" class="btn btn-sm btn-info align">
                           <i class="fa fa-search"></i>+Infos</button> <!--Bouton pour afficher les infos d'un accord-->
                         <button (click)="deleteAccord(acc.accord_id)" class="btn btn-sm btn-danger align">

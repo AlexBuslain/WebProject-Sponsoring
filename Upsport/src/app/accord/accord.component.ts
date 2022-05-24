@@ -53,4 +53,8 @@ export class AccordComponent implements OnInit {
     this.router.navigate(['/accord'])
   } 
 
+  goToContrepartie(accord: Accord) {
+    this.router.navigate(['/contrepartie'])
+  }
+
 }
