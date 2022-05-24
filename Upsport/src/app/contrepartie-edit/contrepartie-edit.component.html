@@ -1,1 +1,8 @@
-<p>contrepartie-edit works!</p>
+<div>
+    <h2>Apportez les modifications désirées à la contrepartie</h2>
+    <input type="text" [(ngModel)]="contrepartie.description" placeholder="Description"><br>
+    <input type="text" [(ngModel)]="contrepartie.etat_avancement" placeholder="Etat d'avancement"><br>
+    <input type="text" [(ngModel)]="contrepartie.statut" placeholder="Statut"><br>
+
+    <button (click)="updateContrepartie()">Valider</button>
+</div>

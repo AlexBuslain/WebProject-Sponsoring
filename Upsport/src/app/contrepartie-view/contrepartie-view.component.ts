@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RestService, Contrepartie } from '../rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contrepartie-view',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContrepartieViewComponent implements OnInit {
 
-  constructor() { }
+  @Input() contrepartie!: Contrepartie; // On récupère avec le @Input l'objet qui vient de la liste.
+  showInfo = false;
+
+  constructor(public rest:RestService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  viewContrepartie() {
+    this.rest.viewContrepartie(this.contrepartie).subscribe(
+      (result) => {this.router.navigate(['/home']);}
+    )
   }
 
 }

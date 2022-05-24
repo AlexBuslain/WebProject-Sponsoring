@@ -42,6 +42,17 @@ export interface Sponsor {
   createdAt: string;
 }
 
+//--------------------------------------CONTREPARTIE--------------------------------------//
+export interface Contrepartie {
+  [x: string]: any;
+  contrepartie_id: number;
+  description: string;
+  etat_avancement: string;
+  statut: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+
 
 
 
@@ -124,6 +135,31 @@ export class RestService {
     return this.http.get<Sponsor>(baseURL + "sponsors/" + sponsor.sponsor_id);
   }
   
+
+  // CONTREPARTIE //
+  getContreparties(): Observable<any> { 
+    return this.http.get<Contrepartie>(baseURL + "contreparties");
+  }
+
+  addContrepartie(contrepartie: Contrepartie): Observable<any> { 
+    return this.http.post(baseURL + "contreparties", contrepartie);
+  }
+
+  updateContrepartie(contrepartie: Contrepartie): Observable<any> { 
+    return this.http.put<Contrepartie>(baseURL + "contreparties/" + contrepartie.contrepartie_id, contrepartie);
+  }
+
+  getContrepartie(contrepartie_id: number): Observable<any> { 
+    return this.http.get<Sponsor>(baseURL + "contreparties/" + contrepartie_id);
+  }
+
+  deleteContrepartie(contrepartie_id: number): Observable<any> { 
+    return this.http.delete(baseURL + "contreparties/" + contrepartie_id);
+  }
+
+  viewContrepartie(contrepartie: Contrepartie): Observable<any> { 
+    return this.http.get<Contrepartie>(baseURL + "contreparties/" + contrepartie.contrepartie_id);
+  }
   
 } 
 

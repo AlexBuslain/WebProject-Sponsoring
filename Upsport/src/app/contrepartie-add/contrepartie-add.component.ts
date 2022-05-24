@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contrepartie-add',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContrepartieAddComponent implements OnInit {
 
-  constructor() { }
+  contrepartie = { contrepartie_id: 0, description:"", etat_avancement:"",statut:true, updatedAt: '', createdAt: ''}
 
-  ngOnInit(): void {
-  }
+ // On instancie les différentes routes dans le constructeur. 
+ constructor(public rest:RestService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
+ ngOnInit(): void {
+ } 
+
+ addContrepartie() {
+   this.rest.addContrepartie(this.contrepartie).subscribe(
+     (result) => {this.router.navigate(['/contrepartie']);}
+   )
+ }
 }

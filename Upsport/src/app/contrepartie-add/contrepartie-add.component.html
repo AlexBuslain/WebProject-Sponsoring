@@ -1,1 +1,35 @@
-<p>contrepartie-add works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>UpSport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="C:\Users\alexa\Documents\ECAM\Master\Q2\Web Architecture\WebProject-Sponsoring\UpSport\src\app\app.component.css">    
+</head>
+
+<body>
+  <header>
+  <div class="wrapper">
+<ul class="nav-area">   
+<li><a href="../home">Home</a></li>
+<li><a href="../accord">Accords</a></li>
+<li><a href="../athlete">Athlètes</a></li>
+<li><a href="../sponsor">Sponsors</a></li>
+</ul>
+
+
+
+<div class="ajout_contrepartie">
+    <h2>Ajout d'une contrepartie</h2>
+    <input type="text" [(ngModel)]="contrepartie.description" placeholder="Description"><br>
+    <input type="text" [(ngModel)]="contrepartie.etat_avancement" placeholder="Etat d'avancement"><br>
+    <input type="text" [(ngModel)]="contrepartie.statut" placeholder="Statut"><br>
+
+    <button (click)="addContrepartie()" class="btn btn-md btn-outline-primary align"> Valider</button>
+</div>
+
+
+</div>
+</header>
+</body>
+</html>
