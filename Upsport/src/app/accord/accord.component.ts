@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class AccordComponent implements OnInit {
 
   accords: Accord[] = [];
+  accord!: Accord;
+  showInfo = false;
 
   constructor( public rest:RestService, private router: Router) { }
 
@@ -31,5 +33,24 @@ export class AccordComponent implements OnInit {
   addAccord() {
     this.router.navigate(['/accord-add']);
   }
+
+  deleteAccord(id:number){
+    this.rest.deleteAccord(id).subscribe(res => {
+         this.accords = this.accords.filter(item => item.accord_id !== id);
+         console.log('Post deleted successfully!');
+    })
+  }
+
+  viewAccord() {
+    this.rest.viewAccord(this.accord).subscribe(
+      (result) => {this.router.navigate(['/home']);}
+    )
+  }
+
+  showInfoForm(accord: Accord) {
+    this.showInfo = !this.showInfo;
+    this.accord = accord;
+    this.router.navigate(['/accord'])
+  } 
 
 }

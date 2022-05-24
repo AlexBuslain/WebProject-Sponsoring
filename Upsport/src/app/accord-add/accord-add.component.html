@@ -18,12 +18,19 @@
 </ul>
 
 
-<div>
-    <h2>Ajout d'un accord</h2>
+<div class="ajout_accord">
+  <h2>Ajout d'un accord</h2>
     <input type="text" [(ngModel)]="accord.sponsor" placeholder="Sponsor"><br>
     <input type="text" [(ngModel)]="accord.athlete" placeholder="Athlete"><br>
-    <input type="text" [(ngModel)]="accord.date_signature" placeholder="YYYY-MM-DD"><br> <!--Attention au format de la date-->
-    <input type="text" [(ngModel)]="accord.date_fin" placeholder="YYYY-MM-DD"><br>
+    <input type="text" [(ngModel)]="accord.date_signature" placeholder="Date de signature (YYYY-MM-DD)"><br> <!--Attention au format de la date-->
+    <input type="text" [(ngModel)]="accord.date_fin" placeholder="Date de fin (YYYY-MM-DD)"><br>
 
     <button (click)="addAccord()">Valider</button>
 </div>
+
+
+
+</div>
+</header>
+</body>
+</html>

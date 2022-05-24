@@ -10,6 +10,7 @@ const baseURL = 'http://localhost:3000/'
 //--------------------------------------ACCORDS--------------------------------------//
 // Définition d'une interface/classe Accord
 export interface Accord {
+  [x: string]: any;
   accord_id: number;
   sponsor: string;
   athlete: string;
@@ -56,8 +57,20 @@ export class RestService {
     return this.http.get<Accord>(baseURL + "accords");
   }
 
+  getAccord(accord_id: number): Observable<any> { 
+    return this.http.get<Accord>(baseURL + "accords/" + accord_id);
+  }
+
   addAccord(accord: Accord): Observable<any> { 
     return this.http.post(baseURL + "accords", accord);
+  }
+
+  deleteAccord(accord_id: number): Observable<any> { 
+    return this.http.delete(baseURL + "accords/" + accord_id)
+  }
+
+  viewAccord(accord: Accord): Observable<any> { 
+    return this.http.get<Athlete>(baseURL + "accords/" + accord.accord_id);
   }
 
     // ATHLETES //

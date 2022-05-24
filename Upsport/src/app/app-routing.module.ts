@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 // Import ACCORD
 import { AccordComponent } from './accord/accord.component';
 import { AccordAddComponent } from './accord-add/accord-add.component';
-import { AccordEditComponent } from './accord-edit/accord-edit.component';
 import { AccordViewComponent } from './accord-view/accord-view.component';
 // Import ATHLETE
 import { AthleteComponent } from './athlete/athlete.component';
@@ -35,11 +34,7 @@ const routes: Routes = [
     component: AccordAddComponent 
   },
   {
-    path:'accord-edit',
-    component: AccordEditComponent
-  },
-  {
-    path:'accord-view',
+    path:'accord-view/:accord_id',
     component: AccordViewComponent
   },
   { // Redirection si rien n'est mis
@@ -77,11 +72,11 @@ const routes: Routes = [
     component: SponsorAddComponent 
   },
   {
-    path: 'sponsor-edit/:sponsor',
+    path: 'sponsor-edit/:sponsor_id',
     component: SponsorEditComponent
   },
   {
-    path: 'sponsor-view/:sponsor',
+    path: 'sponsor-view/:sponsor_id',
     component: SponsorViewComponent
   },
   { // Redirection si rien n'est mis

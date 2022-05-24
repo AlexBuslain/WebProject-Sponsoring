@@ -1,1 +1,24 @@
-<p>accord-view works!</p>
+<div>
+    <h2>Informations sur l'accord</h2>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+                <th>Id unique</th>
+                <th>Sponsor</th>
+                <th>Athlete</th>
+                <th>Date de signature</th>
+                <th>Date de fin</th>
+            </tr>
+          </thead>
+          <tbody>
+                <tr>
+                    <td><span>{{ accord.accord_id }}</span></td>
+                    <td><span>{{ accord.sponsor }}</span></td>
+                    <td><span>{{ accord.athlete }}</span></td>
+                    <td><span>{{ accord.date_signature }}</span></td>
+                    <td><span>{{ accord.date_fin }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+</div>

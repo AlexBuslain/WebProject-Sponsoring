@@ -1,11 +1,57 @@
-<h2>Liste des accords</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UpSport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="C:\Users\alexa\Documents\ECAM\Master\Q2\Web Architecture\WebProject-Sponsoring\UpSport\src\app\app.component.css">    
+</head>
+
+<body>
+  <header>
+  <div class="wrapper">
+<ul class="nav-area">   
+<li><a href="../home">Home</a></li>
+<li><a href="../accord">Accords</a></li>
+<li><a href="../athlete">Athlètes</a></li>
+<li><a href="../sponsor">Sponsors</a></li>
+</ul>
+
 
 <div>
-    <button (click)="addAccord()">Créer un accord</button>
-</div>
-
-<ul> 
-    <li *ngFor="let a of accords"> <!-- ngFor va me permettre de boucler dans la liste-->
-        {{a.sponsor}}
-    </li>
-</ul>
+    <h2>Liste des accords</h2>
+  
+    <div class="container">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+                <th>Sponsor</th>
+                <th>Athlete</th>
+                <th>Contrepartie</th>
+            </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let acc of accords"> <!-- ngFor va me permettre de boucler dans la liste-->
+                    <td><span>{{ acc.sponsor }}</span></td>
+                    <td><span>{{ acc.athlete }}</span></td>
+                    <td><span></span></td>
+                    <td class="buttonCRUD">
+                        <button (click)="showInfoForm(acc)" class="btn btn-sm btn-info align">
+                          <i class="fa fa-search"></i>+Infos</button> <!--Bouton pour afficher les infos d'un accord-->
+                        <button (click)="deleteAccord(acc.accord_id)" class="btn btn-sm btn-danger align">
+                          <i class="fa fa-remove"></i>Supprimer</button> <!--Bouton pour supprimer un accord-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+    <div class="border">
+      <button (click)="addAccord()" class="btn btn-md btn-outline-primary align">
+        <i class="fa"></i>Ajouter un accord</button>
+    <div>
+      <div *ngIf="showInfo">
+        <app-accord-view [accord]="accord"></app-accord-view>
+      </div>
+    </div>
+  

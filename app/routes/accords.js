@@ -13,6 +13,7 @@ router.get('/',(req, res) =>
         const ags = {
             context: accords.map(data =>{
                 return{
+                    accord_id: data.accord_id,
                     sponsor: data.sponsor,
                     athlete: data.athlete,
                     date_signature: data.date_signature,
@@ -32,7 +33,8 @@ router.get('/:accord_id',(req,res)=>{
     Accord.findByPk(accord_id)
         .then( data => {
             const ag = {
-                context: {                    
+                context: {   
+                    accord_id: data.accord_id,                 
                     sponsor: data.sponsor,
                     athlete: data.athlete,
                     date_signature: data.date_signature,

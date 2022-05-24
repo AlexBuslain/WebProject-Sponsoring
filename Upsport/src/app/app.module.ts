@@ -16,7 +16,6 @@ import { AthleteEditComponent } from './athlete-edit/athlete-edit.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AccordEditComponent } from './accord-edit/accord-edit.component';
 import { AccordViewComponent } from './accord-view/accord-view.component';
 import { SponsorComponent } from './sponsor/sponsor.component';
 import { SponsorAddComponent } from './sponsor-add/sponsor-add.component';
@@ -33,7 +32,6 @@ import { SponsorViewComponent } from './sponsor-view/sponsor-view.component';
     AthleteEditComponent,
     AthleteViewComponent,
     HomeComponent,
-    AccordEditComponent,
     AccordViewComponent,
     SponsorComponent,
     SponsorAddComponent,
