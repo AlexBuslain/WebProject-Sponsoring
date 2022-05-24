@@ -15,6 +15,7 @@ import { AthleteAddComponent } from './athlete-add/athlete-add.component';
 import { AthleteEditComponent } from './athlete-edit/athlete-edit.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
 import { HomeComponent } from './home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,16 +16,19 @@ export interface Accord {
   date_signature: string;
   date_fin: string;
   updatedAt: string;
+  createdAt: string;
 }
 
 //--------------------------------------ATHLETES--------------------------------------//
 export interface Athlete {
+  [x: string]: any;
   athlete_id: number;
   nom: string;
   prenom: string;
   discipline: string;
   adresse: string;
   updatedAt: string;
+  createdAt: string;
 }
 
 
@@ -66,6 +69,10 @@ export class RestService {
 
   deleteAthlete(athlete_id: number): Observable<any> { 
     return this.http.delete(baseURL + "athletes/" + athlete_id)
+  }
+
+  viewAthlete(athlete: Athlete): Observable<any> { 
+    return this.http.get<Athlete>(baseURL + "athletes/" + athlete.athlete_id);
   }
   
 } 

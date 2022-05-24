@@ -12,12 +12,14 @@ export class AthleteComponent implements OnInit {
   athletes: Athlete[] = [];
   athlete!: Athlete;
   show = false;
+  showInfo = false;
+
 
   constructor( public rest:RestService, private router: Router) { }
 
   // On utilise à partir du moment où on démarre avec la méthode ngOnInit
   ngOnInit(): void {
-    this.getAthletes(); // On va utiliser ce getAccords pour remplir la liste d'athlete.
+    this.getAthletes(); // On va utiliser ce getAthletes pour remplir la liste d'athlete.
   }
 
   getAthletes() {
@@ -42,11 +44,22 @@ export class AthleteComponent implements OnInit {
     })
   }
 
+  viewAthlete() {
+    this.rest.viewAthlete(this.athlete).subscribe(
+      (result) => {this.router.navigate(['/home']);}
+    )
+  }
+
   showEditForm(athlete: Athlete) {
     this.show = !this.show;
     this.athlete = athlete;
     this.router.navigate(['/athlete'])
   } 
 
+  showInfoForm(athlete: Athlete) {
+    this.showInfo = !this.showInfo;
+    this.athlete = athlete;
+    this.router.navigate(['/athlete'])
+  } 
 
 }

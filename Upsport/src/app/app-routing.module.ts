@@ -47,7 +47,7 @@ const routes: Routes = [
   },
   { // Redirection si rien n'est mis
     path: '',
-    redirectTo: '/athlete',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
 

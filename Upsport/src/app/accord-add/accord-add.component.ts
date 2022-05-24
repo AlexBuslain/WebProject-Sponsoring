@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AccordAddComponent implements OnInit {
 
-  accord = { accord_id: 0, sponsor: '', athlete: '', date_signature: '', date_fin: '', updatedAt: ''}
+  accord = { accord_id: 0, sponsor: '', athlete: '', date_signature: '', date_fin: '', updatedAt: '', createdAt: '',}
 
   // On instancie les différentes routes dans le constructeur. 
   constructor(public rest:RestService, private router: Router, private activatedRoute: ActivatedRoute) { }

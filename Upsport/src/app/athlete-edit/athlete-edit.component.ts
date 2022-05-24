@@ -25,7 +25,7 @@ export class AthleteEditComponent implements OnInit {
 
   updateAthlete() {
     this.rest.updateAthlete(this.athlete).subscribe(
-      (result) => {this.router.navigate(['/athlete']);}
+      (result) => {this.router.navigate(['/home']);}
     )
   }
 

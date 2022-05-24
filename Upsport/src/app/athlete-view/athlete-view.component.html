@@ -1,1 +1,26 @@
-<p>athlete-view works!</p>
+<div>
+    <h2>Informations sur l'athlète</h2>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+                <th>Id unique</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Discipline</th>
+                <th>Adresse</th>
+            </tr>
+          </thead>
+          <tbody>
+                <tr>
+                    <td><span>{{ athlete.athlete_id }}</span></td>
+                    <td><span>{{ athlete.nom }}</span></td>
+                    <td><span>{{ athlete.prenom }}</span></td>
+                    <td><span>{{ athlete.discipline }}</span></td>
+                    <td><span>{{ athlete.adresse }}</span></td>
+                    <td><span>{{ athlete.createdAt }}</span></td>
+                    <td><span>{{ athlete.updatedAt }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+</div>

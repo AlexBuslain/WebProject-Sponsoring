@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RestService, Athlete } from '../rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-athlete-view',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AthleteViewComponent implements OnInit {
 
-  constructor() { }
+  @Input() athlete!: Athlete; // On récupère avec le @Input l'objet qui vient de la liste.
+  showInfo = false;
+
+  constructor(public rest:RestService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  viewAthlete() {
+    this.rest.viewAthlete(this.athlete).subscribe(
+      (result) => {this.router.navigate(['/home']);}
+    )
   }
 
 }

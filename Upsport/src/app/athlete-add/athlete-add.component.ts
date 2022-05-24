@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AthleteAddComponent implements OnInit {
 
-  athlete = { athlete_id: 0, nom:"", prenom:"",discipline:"",adresse:"", updatedAt: ''}
+  athlete = { athlete_id: 0, nom:"", prenom:"",discipline:"",adresse:"", updatedAt: '', createdAt: '","'}
 
   // On instancie les différentes routes dans le constructeur. 
   constructor(public rest:RestService, private router: Router, private activatedRoute: ActivatedRoute) { }
