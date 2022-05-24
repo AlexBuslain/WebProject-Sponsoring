@@ -6,6 +6,7 @@ import { AthleteComponent } from './athlete/athlete.component';
 import { AthleteAddComponent } from './athlete-add/athlete-add.component';
 import { AthleteEditComponent } from './athlete-edit/athlete-edit.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'athlete-view/:athlete_id',
     component: AthleteViewComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   { // Redirection si rien n'est mis
     path: '',

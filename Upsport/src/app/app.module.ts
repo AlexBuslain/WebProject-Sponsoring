@@ -14,6 +14,7 @@ import { AthleteComponent } from './athlete/athlete.component';
 import { AthleteAddComponent } from './athlete-add/athlete-add.component';
 import { AthleteEditComponent } from './athlete-edit/athlete-edit.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AthleteViewComponent } from './athlete-view/athlete-view.component';
     AthleteAddComponent,
     AthleteEditComponent,
     AthleteViewComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
