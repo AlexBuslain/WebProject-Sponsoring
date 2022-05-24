@@ -21,6 +21,10 @@ import { SponsorComponent } from './sponsor/sponsor.component';
 import { SponsorAddComponent } from './sponsor-add/sponsor-add.component';
 import { SponsorEditComponent } from './sponsor-edit/sponsor-edit.component';
 import { SponsorViewComponent } from './sponsor-view/sponsor-view.component';
+import { ContrepartieComponent } from './contrepartie/contrepartie.component';
+import { ContrepartieAddComponent } from './contrepartie-add/contrepartie-add.component';
+import { ContrepartieEditComponent } from './contrepartie-edit/contrepartie-edit.component';
+import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { SponsorViewComponent } from './sponsor-view/sponsor-view.component';
     SponsorAddComponent,
     SponsorEditComponent,
     SponsorViewComponent,
+    ContrepartieComponent,
+    ContrepartieAddComponent,
+    ContrepartieEditComponent,
+    ContrepartieViewComponent,
   ],
   imports: [
     BrowserModule,
