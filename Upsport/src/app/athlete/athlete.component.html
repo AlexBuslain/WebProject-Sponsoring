@@ -1,1 +1,31 @@
-<p>athlete works!</p>
+<h2>Liste des athlètes</h2>
+
+<div>
+    <button (click)="addAthlete()">Ajouter un athlète</button>
+</div>
+
+<thead>
+    <tr>
+        <th scope="col"> Id unique </th>
+        <th scope="col"> Nom </th>
+        <th scope="col"> Prénom </th>
+        <th scope="col"> Discipline </th>
+        <th scope="col"> Adresse </th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let a of athletes"> <!-- ngFor va me permettre de boucler dans la liste-->
+        <td scope="row">{{ a.athlete_id }}</td>
+        <td scope="row">{{ a.nom }}</td>
+        <td scope="row">{{ a.prenom }}</td>
+        <td scope="row">{{ a.discipline }}</td>
+        <td scope="row">{{ a.adresse }}</td>
+        <td><button (click)="showEditForm(a)">Modifier</button></td> <!--Bouton pour modifier un athlète-->
+        <td><button (click)="deleteAthlete(athlete.athlete_id)"> Supprimer</button></td> <!--Bouton pour supprimer un athlète-->
+    </tr>
+</tbody>
+
+    <div *ngIf="show">
+        <app-athlete-edit [athlete]="athlete"></app-athlete-edit>
+    </div>
+

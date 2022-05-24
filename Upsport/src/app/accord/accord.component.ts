@@ -19,13 +19,17 @@ export class AccordComponent implements OnInit {
   }
 
   getAccords() {
-    // On va chercher les accords dans le service. On "subscrire" car on a créé un Observable dans le service et donc on vient s'abonner. 
+    // On va chercher les accords dans le service. On "subscribe" car on a créé un Observable dans le service et donc on vient s'abonner. 
     this.rest.getAccords().subscribe(
       (resp) => { 
         console.log(resp)
         this.accords = resp;
       }
     )
+  }
+
+  addAccord() {
+    this.router.navigate(['/accord-add']);
   }
 
 }

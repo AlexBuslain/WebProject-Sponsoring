@@ -1,5 +1,9 @@
 <h2>Liste des accords</h2>
 
+<div>
+    <button (click)="addAccord()">Créer un accord</button>
+</div>
+
 <ul> 
     <li *ngFor="let a of accords"> <!-- ngFor va me permettre de boucler dans la liste-->
         {{a.sponsor}}
