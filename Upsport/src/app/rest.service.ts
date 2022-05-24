@@ -31,6 +31,16 @@ export interface Athlete {
   createdAt: string;
 }
 
+//--------------------------------------SPONSOR--------------------------------------//
+export interface Sponsor {
+  [x: string]: any;
+  sponsor_id: number;
+  nom: string;
+  adresse: string;
+  updatedAt: string;
+  createdAt: string;
+}
+
 
 
 
@@ -74,6 +84,33 @@ export class RestService {
   viewAthlete(athlete: Athlete): Observable<any> { 
     return this.http.get<Athlete>(baseURL + "athletes/" + athlete.athlete_id);
   }
+
+
+  // SPONSORS //
+  getSponsors(): Observable<any> { 
+    return this.http.get<Sponsor>(baseURL + "sponsors");
+  }
+
+  addSponsor(sponsor: Sponsor): Observable<any> { 
+    return this.http.post(baseURL + "sponsors", sponsor);
+  }
+
+  updateSponsor(sponsor: Sponsor): Observable<any> { 
+    return this.http.put<Sponsor>(baseURL + "sponsors/" + sponsor.sponsor_id,sponsor);
+  }
+
+  getSponsor(sponsor_id: number): Observable<any> { 
+    return this.http.get<Sponsor>(baseURL + "sponsors/" + sponsor_id);
+  }
+
+  deleteSponsor(sponsor_id: number): Observable<any> { 
+    return this.http.delete(baseURL + "sponsors/" + sponsor_id)
+  }
+
+  viewSponsor(sponsor: Sponsor): Observable<any> { 
+    return this.http.get<Sponsor>(baseURL + "sponsors/" + sponsor.sponsor_id);
+  }
+  
   
 } 
 

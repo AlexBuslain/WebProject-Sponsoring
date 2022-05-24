@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UpSport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="C:\Users\alexa\Documents\ECAM\Master\Q2\Web Architecture\WebProject-Sponsoring\UpSport\src\app\app.component.css">    
+</head>
+
+<body>
+  <header>
+  <div class="wrapper">
+<ul class="nav-area">   
+<li><a href="../home">Home</a></li>
+<li><a href="../accord">Accords</a></li>
+<li><a href="../athlete">Athlètes</a></li>
+<li><a href="../sponsor">Sponsors</a></li>
+</ul>
+
+
+<div>
+  <h2>Liste des sponsors</h2>
+
+  <div class="container">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+              <th>Nom</th>
+              <th>Adresse</th>
+          </tr>
+        </thead>
+        <tbody>
+             <tr *ngFor="let s of sponsors"> <!-- ngFor va me permettre de boucler dans la liste-->
+                  <td><span>{{s.nom }}</span></td>
+                  <td><span>{{s.adresse }}</span></td>
+                  <td><span></span></td>
+                  <td class="buttonCRUD">
+                      <button (click)="showInfoForm(s)" class="btn btn-sm btn-info align">
+                        <i class="fa fa-search"></i>+Infos</button> <!--Bouton pour afficher les infos d'un sponsor-->
+                      <button (click)="showEditForm(s)" class="btn btn-sm btn-warning align">
+                        <i class="fa fa-edit"></i>Modifier</button> <!--Bouton pour modifier un sponsor-->
+                      <button (click)="deleteSponsor(sponsor.sponsor_id)" class="btn btn-sm btn-danger align">
+                        <i class="fa fa-remove"></i>Supprimer</button> <!--Bouton pour supprimer un sponsor-->
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+  <div class="border">
+    <button (click)="addSponsor()" class="btn btn-md btn-outline-primary align">
+      <i class="fa"></i>Ajouter un sponsor</button>
+  </div>
+      <div *ngIf="show">
+          <app-sponsor-edit [sponsor]="sponsor"></app-sponsor-edit>
+      </div>
+  </div>
+  <div>
+    <div *ngIf="showInfo">
+      <app-sponsor-view [sponsor]="sponsor"></app-sponsor-view>
+    </div>
+  </div>
+
+</div>
+</header>
+
+
+</body>
+</html>
