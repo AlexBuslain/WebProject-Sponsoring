@@ -33,7 +33,6 @@
              <tr *ngFor="let s of sponsors"> <!-- ngFor va me permettre de boucler dans la liste-->
                   <td><span>{{s.nom }}</span></td>
                   <td><span>{{s.adresse }}</span></td>
-                  <td><span></span></td>
                   <td class="buttonCRUD">
                       <button (click)="showInfoForm(s)" class="btn btn-sm btn-info align">
                         <i class="fa fa-search"></i>+Infos</button> <!--Bouton pour afficher les infos d'un sponsor-->

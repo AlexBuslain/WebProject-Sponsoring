@@ -56,6 +56,9 @@ export interface Contrepartie {
 
 
 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -150,7 +153,7 @@ export class RestService {
   }
 
   getContrepartie(contrepartie_id: number): Observable<any> { 
-    return this.http.get<Sponsor>(baseURL + "contreparties/" + contrepartie_id);
+    return this.http.get<Contrepartie>(baseURL + "contreparties/" + contrepartie_id);
   }
 
   deleteContrepartie(contrepartie_id: number): Observable<any> { 
@@ -160,6 +163,12 @@ export class RestService {
   viewContrepartie(contrepartie: Contrepartie): Observable<any> { 
     return this.http.get<Contrepartie>(baseURL + "contreparties/" + contrepartie.contrepartie_id);
   }
+
+  goToContrepartie(accord_id: number): Observable<any> { 
+    return this.http.get(baseURL + "links/" + accord_id);
+  }
+
+
   
 } 
 

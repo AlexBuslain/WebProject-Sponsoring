@@ -62,4 +62,8 @@ export class AthleteComponent implements OnInit {
     this.router.navigate(['/athlete'])
   } 
 
+  goToContrepartie(athlete: Athlete) {
+    this.router.navigate(['/contrepartie'])
+  }
+
 }

@@ -19,6 +19,9 @@ import { ContrepartieComponent } from './contrepartie/contrepartie.component';
 import { ContrepartieAddComponent } from './contrepartie-add/contrepartie-add.component';
 import { ContrepartieEditComponent } from './contrepartie-edit/contrepartie-edit.component';
 import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view.component';
+// Import LINK
+
+
 // Import HOME
 import { HomeComponent } from './home/home.component';
 
@@ -110,7 +113,6 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
-
 ];
 
 

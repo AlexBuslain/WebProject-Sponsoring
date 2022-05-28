@@ -13,6 +13,11 @@
     
   }
 
+  .goto {
+    background-color: #fff;
+    border-color: black;
+  }
+
   .align {
     padding-right:7px;
   }

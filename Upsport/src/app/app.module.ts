@@ -26,6 +26,7 @@ import { ContrepartieAddComponent } from './contrepartie-add/contrepartie-add.co
 import { ContrepartieEditComponent } from './contrepartie-edit/contrepartie-edit.component';
 import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view
     ContrepartieAddComponent,
     ContrepartieEditComponent,
     ContrepartieViewComponent,
+
   ],
   imports: [
     BrowserModule,

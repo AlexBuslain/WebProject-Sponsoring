@@ -36,7 +36,10 @@
                   <td><span>{{ a.nom }}</span></td>
                   <td><span>{{ a.prenom }}</span></td>
                   <td><span>{{ a.discipline }}</span></td>
-                  <td><span></span></td>
+                  <td class="buttonCRUD">
+                    <button (click)="goToContrepartie(a)" class="btn btn-sm goto align">
+                      <i class="fa fa-search"></i>Accéder aux contreparties</button> <!--Bouton pour afficher les contreparties d'un accord-->
+                  </td>
                   <td class="buttonCRUD">
                       <button (click)="showInfoForm(a)" class="btn btn-sm btn-info align">
                         <i class="fa fa-search"></i>+Infos</button> <!--Bouton pour afficher les infos d'un athlète-->

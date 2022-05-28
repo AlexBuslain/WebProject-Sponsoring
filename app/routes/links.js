@@ -16,6 +16,7 @@ router.get('/',(req, res) => {
             context: links.map(data =>{
                 return{
                     // id: data.id,
+                    link_id: data.link_id,
                     accord_id: data.accord_id,
                     contrepartie_id: data.contrepartie_id
                 }
