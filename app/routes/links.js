@@ -9,25 +9,22 @@ const { route } = require('./accords');
 
 
 // Obtenir une liste de tous les liens
-router.get('/',(req, res) => {
+router.get('/',(req, res) => 
     Link.findAll()    
     .then(links => {
-        const linkies = {
+        const ags = {
             context: links.map(data =>{
                 return{
-                    // id: data.id,
                     link_id: data.link_id,
                     accord_id: data.accord_id,
-                    contrepartie_id: data.contrepartie_id
+                    contrepartie_id: data.contrepartie_id,
                 }
             })
         }
-        res.json({links: linkies.context});
-
+        res.json( ags.context);
     })
     .catch(err => res.status(500).json({message: err})) 
-    
-});
+);
 
 
 

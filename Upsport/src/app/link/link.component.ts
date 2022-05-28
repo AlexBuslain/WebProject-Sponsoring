@@ -24,7 +24,7 @@ export class LinkComponent implements OnInit {
   getLinks() {
     // On va chercher les liens dans le service. On "subscribe" car on a créé un Observable dans le service et donc on vient s'abonner. 
     this.rest.getLinks().subscribe(
-      (resp) => { 
+      (resp : any) => { 
         console.log(resp)
         this.links = resp;
       }

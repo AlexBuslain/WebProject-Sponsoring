@@ -763,12 +763,13 @@ components:
     Link:
       description: Modèle contenant l'info d'un lien
       properties:
+
         accord_id:
-          type: integer
-          example: 1
+          type: string
+          example: "1"
         contrepartie_id:
-          type: integer
-          example: 1
+          type: string
+          example: "1"
     Links:
       description: Modèle contenant plusieurs liens
       items:

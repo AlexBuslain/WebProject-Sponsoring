@@ -8,12 +8,12 @@ const Link = db.define('links',{
         autoIncrement: true,
         primaryKey: true
     },
-   accord_id: {
+    accord_id: {
         type: Sequelize.INTEGER,
     },
     contrepartie_id: {
         type: Sequelize.INTEGER,
-    }
+    },
 
 })
 module.exports = Link;
