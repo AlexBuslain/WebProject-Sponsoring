@@ -20,7 +20,10 @@ import { ContrepartieAddComponent } from './contrepartie-add/contrepartie-add.co
 import { ContrepartieEditComponent } from './contrepartie-edit/contrepartie-edit.component';
 import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view.component';
 // Import LINK
-
+import { LinkComponent } from './link/link.component';
+import { LinkAddComponent } from './link-add/link-add.component';
+import { LinkEditComponent } from './link-edit/link-edit.component';
+import { LinkViewComponent } from './link-view/link-view.component';
 
 // Import HOME
 import { HomeComponent } from './home/home.component';
@@ -107,6 +110,27 @@ const routes: Routes = [
   {
     path: 'contrepartie-view/:contrepartie',
     component: ContrepartieViewComponent
+  },
+  { // Redirection si rien n'est mis
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  { // ---------------- LIEN ---------------- //
+    path:'link',
+    component: LinkComponent
+  },
+  {
+    path:'link-add',
+    component: LinkAddComponent 
+  },
+  {
+    path: 'link-edit/:link',
+    component: LinkEditComponent
+  },
+  {
+    path: 'link-view/:link',
+    component: LinkViewComponent
   },
   { // Redirection si rien n'est mis
     path: '',

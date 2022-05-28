@@ -53,6 +53,13 @@ export interface Contrepartie {
   createdAt: string;
 }
 
+//--------------------------------------LIEN--------------------------------------//
+export interface Link {
+  [x: string]: any;
+  link_id: number;
+  accord_id: string;
+  contrepartie_id: string;
+}
 
 
 
@@ -166,6 +173,32 @@ export class RestService {
 
   goToContrepartie(accord_id: number): Observable<any> { 
     return this.http.get(baseURL + "links/" + accord_id);
+  }
+
+
+      // LIENS //
+  getLinks(): Observable<any> { 
+    return this.http.get<Link>(baseURL + "links");
+  }
+
+  addLink(link: Link): Observable<any> { 
+    return this.http.post(baseURL + "links", link);
+  }
+
+  updateLink(link: Link): Observable<any> { 
+    return this.http.put<Link>(baseURL + "links/" + link.link_id, link);
+  }
+
+  getLink(link_id: number): Observable<any> { 
+    return this.http.get<Link>(baseURL + "links/" + link_id);
+  }
+
+  deleteLink(link_id: number): Observable<any> { 
+    return this.http.delete(baseURL + "links/" + link_id)
+  }
+
+  viewLink(link: Link): Observable<any> { 
+    return this.http.get<Link>(baseURL + "links/" + link.link_id);
   }
 
 

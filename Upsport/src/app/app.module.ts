@@ -25,6 +25,10 @@ import { ContrepartieComponent } from './contrepartie/contrepartie.component';
 import { ContrepartieAddComponent } from './contrepartie-add/contrepartie-add.component';
 import { ContrepartieEditComponent } from './contrepartie-edit/contrepartie-edit.component';
 import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view.component';
+import { LinkComponent } from './link/link.component';
+import { LinkAddComponent } from './link-add/link-add.component';
+import { LinkEditComponent } from './link-edit/link-edit.component';
+import { LinkViewComponent } from './link-view/link-view.component';
 
 
 @NgModule({
@@ -46,6 +50,10 @@ import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view
     ContrepartieAddComponent,
     ContrepartieEditComponent,
     ContrepartieViewComponent,
+    LinkComponent,
+    LinkAddComponent,
+    LinkEditComponent,
+    LinkViewComponent,
 
   ],
   imports: [

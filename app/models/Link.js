@@ -10,11 +10,9 @@ const Link = db.define('links',{
     },
    accord_id: {
         type: Sequelize.INTEGER,
-        foreignKey: true
     },
     contrepartie_id: {
         type: Sequelize.INTEGER,
-        foreignKey: true
     }
 
 })
