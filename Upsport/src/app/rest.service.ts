@@ -184,10 +184,6 @@ export class RestService {
     return this.http.post(baseURL + "links", link);
   }
 
-  updateLink(link: Link): Observable<any> { 
-    return this.http.put<Link>(baseURL + "links/" + link.link_id, link);
-  }
-
   getLink(link_id: number): Observable<any> { 
     return this.http.get<Link>(baseURL + "links/" + link_id);
   }

@@ -20,6 +20,10 @@ const Accord = db.define('accords',{
     date_fin: {
         type: Sequelize.DATE
     },
+    //link_id: {
+    //    type: Sequelize.INTEGER,
+    //    foreignKey: true,
+    //}
 
 })
 module.exports = Accord;

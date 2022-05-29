@@ -49,11 +49,11 @@ export class LinkComponent implements OnInit {
     )
   }
 
-  showEditForm(link: Link) {
-    this.show = !this.show;
-    this.link = link;
-    this.router.navigate(['/link'])
-  } 
+  //showEditForm(link: Link) {
+  //  this.show = !this.show;
+  //  this.link = link;
+  //  this.router.navigate(['/link'])
+  //} 
 
   showInfoForm(link: Link) {
     this.showInfo = !this.showInfo;

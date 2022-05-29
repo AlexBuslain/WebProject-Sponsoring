@@ -22,7 +22,6 @@ import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view
 // Import LINK
 import { LinkComponent } from './link/link.component';
 import { LinkAddComponent } from './link-add/link-add.component';
-import { LinkEditComponent } from './link-edit/link-edit.component';
 import { LinkViewComponent } from './link-view/link-view.component';
 
 // Import HOME
@@ -123,10 +122,6 @@ const routes: Routes = [
   {
     path:'link-add',
     component: LinkAddComponent 
-  },
-  {
-    path: 'link-edit/:link',
-    component: LinkEditComponent
   },
   {
     path: 'link-view/:link',

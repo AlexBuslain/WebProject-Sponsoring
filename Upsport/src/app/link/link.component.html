@@ -36,8 +36,6 @@
                   <td class="buttonCRUD">
                       <button (click)="showInfoForm(l)" class="btn btn-sm btn-info align">
                         <i class="fa fa-search"></i>+Infos</button> <!--Bouton pour afficher les infos d'un lien-->
-                      <button (click)="showEditForm(l)" class="btn btn-sm btn-warning align">
-                        <i class="fa fa-edit"></i>Modifier</button> <!--Bouton pour modifier un lien-->
                       <button (click)="deleteLink(link.link_id)" class="btn btn-sm btn-danger align">
                         <i class="fa fa-remove"></i>Supprimer</button> <!--Bouton pour supprimer un lien-->
                   </td>
@@ -50,9 +48,7 @@
     <button (click)="addLink()" class="btn btn-md btn-outline-primary align">
       <i class="fa"></i>Ajouter un lien</button>
   </div>
-      <div *ngIf="show">
-          <app-link-edit [link]="link"></app-link-edit>
-      </div>
+      
   </div>    
   <div>
     <div *ngIf="showInfo">

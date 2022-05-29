@@ -27,7 +27,6 @@ import { ContrepartieEditComponent } from './contrepartie-edit/contrepartie-edit
 import { ContrepartieViewComponent } from './contrepartie-view/contrepartie-view.component';
 import { LinkComponent } from './link/link.component';
 import { LinkAddComponent } from './link-add/link-add.component';
-import { LinkEditComponent } from './link-edit/link-edit.component';
 import { LinkViewComponent } from './link-view/link-view.component';
 
 
@@ -52,7 +51,6 @@ import { LinkViewComponent } from './link-view/link-view.component';
     ContrepartieViewComponent,
     LinkComponent,
     LinkAddComponent,
-    LinkEditComponent,
     LinkViewComponent,
 
   ],

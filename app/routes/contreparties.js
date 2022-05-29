@@ -107,12 +107,13 @@ router.put('/:contrepartie_id',(req,res)=>{
     }
     console.log(obj)
     
-    let {statut} = obj;
+    let {etat_avancement, statut} = obj;
     console.log(req.body);
 
 
     // update dans la table
     Contrepartie.update({
+        etat_avancement,
         statut,
         },
         {where: {contrepartie_id: contrepartie_id}}
